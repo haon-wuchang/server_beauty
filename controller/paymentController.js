@@ -4,7 +4,7 @@ export const paymentKakaoPay = async(req, res) => {
     try {
         // console.log(req.body);
         const {id, item_name, total_amount} = req.body;
-        const KAKAO_ADMIN_KEY = "429875e9e34e2835bd90436b7c640e1c";
+        const KAKAO_ADMIN_KEY = "647a56ab49761bc821a6441ff93da4f7";
         const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
 
         const response = await axios.post(
