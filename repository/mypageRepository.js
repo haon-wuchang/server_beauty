@@ -33,13 +33,17 @@ export const updateInfo = async ({ id, colName, value }) => {
     return { result: result[0].changedRows };
 }
 
-//회원탈퇴
+// 회원탈퇴
 export const deleteAllMyinfo = async ({ id }) => {
-    // 먼저 orders 테이블에서 관련된 데이터를 삭제
+    // 먼저 orders 테이블에서 삭제
     const deleteOrdersSql = `DELETE FROM orders WHERE id = ?`;
     await db.execute(deleteOrdersSql, [id]);
 
-    // 그 다음 customer 테이블에서 삭제
+    // 그 다음 review 테이블에서 삭제
+    const deleteReviewsSql = `DELETE FROM review WHERE id = ?`;
+    await db.execute(deleteReviewsSql, [id]);
+
+    // 마지막으로 customer 테이블에서 삭제
     const deleteCustomerSql = `DELETE FROM customer WHERE id = ?`;
     const result = await db.execute(deleteCustomerSql, [id]);
 
